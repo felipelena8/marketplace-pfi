@@ -7,7 +7,7 @@ import lombok.Getter;
 @Getter
 public class ApiError {
 
-    private int status;
-    private String message;
-    private String code;
+  private int status;
+  private String message;
+  private String code;
 }

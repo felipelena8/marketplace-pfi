@@ -16,20 +16,20 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 @Slf4j
 public class MarketplaceApplication {
 
-    public static void main(String[] args) {
-        new SpringApplicationBuilder(getConfigClass()).run(args);
-    }
+  public static void main(String[] args) {
+    new SpringApplicationBuilder(getConfigClass()).run(args);
+  }
 
-    private static Class<?> getConfigClass() {
-        final Module module = ApplicationUtils.getModule();
-        log.info("Starting application for module: {}", module.toString());
-        return switch (module) {
-            case ORDERS -> OrdersSpringConfig.class;
-            case INVENTORY -> InventorySpringConfig.class;
-            case PAYMENTS -> PaymentsSpringConfig.class;
-            case SHIPMENTS -> ShipmentsSpringConfig.class;
-            case NOTIFICATIONS -> NotificationsSpringConfig.class;
-            default -> SpringConfig.class;
-        };
-    }
+  private static Class<?> getConfigClass() {
+    final Module module = ApplicationUtils.getModule();
+    log.info("Starting application for module: {}", module.toString());
+    return switch (module) {
+      case ORDERS -> OrdersSpringConfig.class;
+      case INVENTORY -> InventorySpringConfig.class;
+      case PAYMENTS -> PaymentsSpringConfig.class;
+      case SHIPMENTS -> ShipmentsSpringConfig.class;
+      case NOTIFICATIONS -> NotificationsSpringConfig.class;
+      default -> SpringConfig.class;
+    };
+  }
 }

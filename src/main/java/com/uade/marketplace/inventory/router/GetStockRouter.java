@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class GetStockRouter {
 
-    @GetMapping("/stocks/{item_id}")
-    public ResponseEntity<String> getPayment(@PathVariable("item_id") String itemId) {
-        return ResponseEntity.ok().body(itemId);
-    }
+  @GetMapping("/stocks/{item_id}")
+  public ResponseEntity<String> getPayment(@PathVariable("item_id") String itemId) {
+    return ResponseEntity.ok().body(itemId);
+  }
 }
