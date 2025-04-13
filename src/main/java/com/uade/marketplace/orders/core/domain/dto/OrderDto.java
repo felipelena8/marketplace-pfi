@@ -7,8 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @Setter
 public class OrderDto {
-  @With
-  private String orderId;
+  @With private String orderId;
   private String itemId;
   private int quantity;
 }

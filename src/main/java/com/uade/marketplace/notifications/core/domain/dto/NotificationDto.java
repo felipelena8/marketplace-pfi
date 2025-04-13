@@ -7,8 +7,7 @@ import lombok.*;
 @Getter
 @Builder
 public class NotificationDto {
-    @With
-    private String id;
-    private String email;
-    private String message;
+  @With private String id;
+  private String email;
+  private String message;
 }
