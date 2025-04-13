@@ -1,6 +1,23 @@
 spring:
   profiles:
     active: ${module}
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
 
 server:
   port: ${port:8080}
+
+aws:
+  access-key-id: ${AWS_ACCESS_KEY_ID}
+  secret-access-key: ${AWS_SECRET_ACCESS_KEY_ID}
+  region: ${AWS_REGION}
+
+topics:
+  order-created:
+    url: ${TOPIC_CREATE_ORDER_URL}
+    delay: 100

@@ -1,4 +1,4 @@
-package com.uade.marketplace.orders.core.domain.dto;
+package com.uade.marketplace.payments.core.domain.dto;
 
 import lombok.*;
 
@@ -6,8 +6,8 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
-public class OrderDto {
-  @With private String orderId;
+public class OrderDTO {
+  @With private String id;
   private String itemId;
   private int quantity;
 }
