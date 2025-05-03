@@ -8,7 +8,7 @@ import lombok.*;
 @Setter
 @ToString
 @Builder
-public class Order {
+public class Payment {
   private String id;
   private String itemId;
   private int quantity;

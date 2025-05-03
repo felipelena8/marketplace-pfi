@@ -2,9 +2,9 @@ package com.uade.marketplace.payments.core.exception.usecase;
 
 import com.uade.marketplace.base.core.usecase.ConsumeMessage;
 import com.uade.marketplace.payments.core.domain.dto.OrderDTO;
-import com.uade.marketplace.payments.core.domain.entity.Order;
+import com.uade.marketplace.payments.core.domain.entity.Payment;
 import com.uade.marketplace.payments.repository.PaymentsRepository;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -19,9 +19,9 @@ public class ConsumeOrderCreatedMessage implements ConsumeMessage<OrderDTO> {
   @Override
   public void accept(OrderDTO orderDTO) {
 
-    Order order =
-        Order.builder()
-            .date(LocalDate.now().toString())
+    Payment payment =
+        Payment.builder()
+            .date(LocalDateTime.now().toString())
             .totalPrice(orderDTO.getPrice() * orderDTO.getQuantity())
             .email(orderDTO.getEmail())
             .itemId(orderDTO.getItemId())
@@ -29,6 +29,6 @@ public class ConsumeOrderCreatedMessage implements ConsumeMessage<OrderDTO> {
             .unitPrice(orderDTO.getPrice())
             .build();
 
-    paymentsRepository.save(order);
+    paymentsRepository.save(payment);
   }
 }
