@@ -1,4 +1,4 @@
-package com.uade.marketplace.orders.core.domain;
+package com.uade.marketplace.payments.core.domain.entity;
 
 import lombok.*;
 
@@ -9,7 +9,7 @@ import lombok.*;
 @ToString
 @Builder
 public class Order {
-  @With private String id;
+  private String id;
   private String itemId;
   private int quantity;
   private String email;

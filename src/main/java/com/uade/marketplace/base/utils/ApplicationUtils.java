@@ -26,8 +26,7 @@ public class ApplicationUtils {
     ORDERS("orders"),
     PAYMENTS("payments"),
     INVENTORY("inventory"),
-    NOTIFICATIONS("notifications"),
-    SHIPMENTS("shipments");
+    NOTIFICATIONS("notifications");
 
     private final String value;
 
