@@ -16,4 +16,5 @@ public class Payment {
   private Double unitPrice;
   private Double totalPrice;
   private String date;
+  private String description;
 }

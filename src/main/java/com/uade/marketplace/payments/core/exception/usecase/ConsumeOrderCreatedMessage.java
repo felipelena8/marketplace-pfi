@@ -27,6 +27,7 @@ public class ConsumeOrderCreatedMessage implements ConsumeMessage<OrderDTO> {
             .itemId(orderDTO.getItemId())
             .quantity(orderDTO.getQuantity())
             .unitPrice(orderDTO.getPrice())
+            .description(orderDTO.getDescription())
             .build();
 
     paymentsRepository.save(payment);
