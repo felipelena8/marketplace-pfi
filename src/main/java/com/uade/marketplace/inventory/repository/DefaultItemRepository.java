@@ -2,6 +2,7 @@ package com.uade.marketplace.inventory.repository;
 
 import com.uade.marketplace.inventory.core.domain.entity.Item;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -13,11 +14,14 @@ public class DefaultItemRepository implements ItemRepository {
   private Map<String, Item> items;
 
   public DefaultItemRepository() {
+    items = new HashMap<>(); // Use a mutable map
     Item item1 = createItem("MacBook", 10, 999.99);
     Item item2 = createItem("Smartwatch", 20, 200.5);
     Item item3 = createItem("Samsung S24 Ultra", 5, 1200.0);
 
-    items = Map.of(item1.getItemId(), item1, item2.getItemId(), item2, item3.getItemId(), item3);
+    items.put(item1.getItemId(), item1);
+    items.put(item2.getItemId(), item2);
+    items.put(item3.getItemId(), item3);
   }
 
   @Override
