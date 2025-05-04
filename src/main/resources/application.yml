@@ -13,11 +13,14 @@ server:
   port: ${port:8080}
 
 aws:
-  access-key-id: ${AWS_ACCESS_KEY_ID}
-  secret-access-key: ${AWS_SECRET_ACCESS_KEY_ID}
-  region: ${AWS_REGION}
+  access-key-id: "ASIA3D6HGFMMWIQ5TDKG"
+  secret-access-key: "1o3snAhDnOMi7+xBx5h6O5nT5vq7z6yoDkg9PNfQ"
+  region: "us-east-1"
 
 topics:
-  order-created:
-    url: ${TOPIC_CREATE_ORDER_URL}
+  payments-queue:
+    url: "https://sqs.us-east-1.amazonaws.com/764385045273/orders-inventory-queue"
+    delay: 100
+  inventory-queue:
+    url: "https://sqs.us-east-1.amazonaws.com/764385045273/orders-inventory-queue"
     delay: 100

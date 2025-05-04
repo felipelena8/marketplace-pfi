@@ -14,6 +14,7 @@ public class DefaultAdvisor {
   public ResponseEntity<ApiError> handleRuntimeException(RuntimeException e) {
     HttpStatus status = HttpStatus.FAILED_DEPENDENCY;
     log.error(e.getMessage());
+    e.printStackTrace();
     return ResponseEntity.status(status.value())
         .body(
             ApiError.builder()

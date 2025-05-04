@@ -63,14 +63,12 @@ public abstract class RetrieveMessagesSqs<T> implements Supplier<Void> {
 
   private MessageDTO<T> mapMessageToDTO(Message message) {
     try {
-      T body = objectMapper.readValue(message.getBody(), getTypeReference());
-      return MessageDTO.<T>builder().body(body).build();
+      var body = objectMapper.readValue(message.getBody(), getTypeReference());
+      return MessageDTO.<T>builder().body((T) body).build();
     } catch (Exception e) {
       throw new RuntimeException("Error mapping message to DTO", e);
     }
   }
 
-  protected TypeReference<T> getTypeReference() {
-    return new TypeReference<T>() {};
-  }
+  public abstract TypeReference getTypeReference();
 }
