@@ -13,9 +13,9 @@ server:
   port: ${port:8080}
 
 aws:
-  access-key-id: ${ACCESS_KEY_ID}
-  secret-access-key: ${SECRET_ACCESS_KEY}
-  session-token: ${AWS_SESSION_TOKEN}
+  access-key-id: ${AWS_ACCESS_KEY}
+  secret-access-key: ${AWS_SECRET_KEY}
+  session-token: ${SECURITY_KEY}
   region: "us-east-1"
 
 topics:
