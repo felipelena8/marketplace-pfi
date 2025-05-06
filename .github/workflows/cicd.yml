@@ -49,12 +49,10 @@ jobs:
         run: sudo docker pull joubina1/marketplacebackcointainer:latest
 
       - name: Run Docker Container
-        env:
-            SECURITY_KEY: ${{ secrets.SECURITY_KEY }}
-            AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
-            AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
         run: |
-            sudo docker run -d -p 8080:8080 --name marketplacebackcointainer \
-            -e SECURITY_KEY="${{ secrets.SECURITY_KEY }}" -e AWS_SECRET_KEY="${{ secrets.AWS_SECRET_KEY }}" -e AWS_ACCESS_KEY="${{ secrets.AWS_ACCESS_KEY }}" \
-            joubina1/marketplacebackcointainer
+          sudo docker run -d -p 8080:8080 --name marketplacebackcointainer \
+          -e SECURITY_KEY="IQoJb3JpZ2luX2VjEJL//////////wEaCXVzLXdlc3QtMiJIMEYCIQCL+kAsumstnpki+1vESyosSzxuas5Ld3nk0GcZZPApngIhAMv1/IIOXu6yu74V+GpIHlBzlotiXRfZn8014SCMxOq6KqgCCDsQARoMNzY0Mzg1MDQ1MjczIgzefd+aa+3aaJgsBN0qhQLxPRV5uQemF+vB4oa555V+a4CxHtXEOsbd3XSekPdJBcOst/ywdWDjwxgLSZ7KpzAxL3hDX0Kmy6vpzDeOp3CsAS4K8OahwfyC2fCr8txRJkNf5AHDFEd+TAzHwUixrmAV6tmMyvlkNEPMBRWonKVkfI94o7M0+TAs46qMOrPXrJFkHUkqP53zvOoK2B69BGYqqlTTKz/pumCh+oy9eYus06yMZkpOFb/uBm2IyBeNpEvkzBZdldHTNv2DbX+e6wqIh+oWbBu0D71T6d+eUG+9I5h6MNuntPije8/X3YgsHNQWzaJtys5V2kJfeMIU5pTyk62c34AvnzcIgjOVVBD6yOrVpUow+snlwAY6nAEgvUyNK7YyBBkQDZRzXRaU2Uo8bHY8gFTPKk0jJhYAb588MEunao8O3gjCPHWRU8rCyxnaFoucUP1UK13+WK+XXmfoRTFbanEhE76u5jkqwiN0egNrvu7cy+K/QZoezM/UQoSnF4NqtjIelq6b4wn4Ng2ICeO1wwvjkI3mgKFNzH7Et++GYI+Uv60y23Ghi2K8EFm1hejswsBx1xY=" \
+          -e AWS_SECRET_KEY="KU7qeCicp1vJQkx2GjgD90CpggKe+g6ddvqJ5ofV" \
+          -e AWS_ACCESS_KEY="ASIA3D6HGFMM3ACPYCRB" \
+          joubina1/marketplacebackcointainer
 
