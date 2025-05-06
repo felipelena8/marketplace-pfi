@@ -13,7 +13,7 @@ server:
   port: ${port:8080}
 
 aws:
-  access-key-id: "ASIA3D6HGFMMWIQ5TDKG"
+  access-key-id: "ASIA3D6HGFMM3ACPYCRB"
   secret-access-key: "1o3snAhDnOMi7+xBx5h6O5nT5vq7z6yoDkg9PNfQ"
   region: "us-east-1"
 
