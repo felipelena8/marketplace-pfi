@@ -79,7 +79,7 @@ jobs:
 
       - name: Run Docker Payments Container
         run: |
-          sudo docker run -d -p 8081:8081 --name marketplacebackpaymentscointainer \
+          sudo docker run -d -p 8080:8080 --name marketplacebackpaymentscointainer \
           -e SECURITY_KEY="IQoJb3JpZ2luX2VjEKP//////////wEaCXVzLXdlc3QtMiJIMEYCIQCtlRd7WMsTT7CZmunV+FkRonOqwNjeSC0RfhCXVfgCYAIhAKsH9bRVJCDaX20vlktU+qGqq/NVZr165uWDKeeI6ptRKqgCCEwQARoMNzY0Mzg1MDQ1MjczIgzLfsb7s0l19Go7W2IqhQKFE0ymxn1TXVu9GytiRC29q0OErsjMF7Yj30VS45EH7RK/ltSzGySD4DFjxyt8f+twyO4Bl0S1XVCd6zFhP0qrHNZmjhRsTCRqMV/FVJxnIFbp815NHMe8wJ9cQbjaGu3rkrqPjoBHe657dL/cJLDyHMMhxSI32OfBuIPTpRPPUHDrGA48Rxu+Eye6hvj4n43f///balJiF/ZiZqu49WWXeFEJYYl2+//kSuzCdkzilPEES8T92ZCgU2V07Au+v7vjObi3k6jy/kBLLWqq9GlYewsduLNbXx/8l81yMZpYSc4ZmZDvlgVF6JYGZATrm7/S8SZ7wFMqaWgJBjIx9A4R/Avk9H0w277pwAY6nAGUCsjwIsyGOK3J93pzQod+XMbfYXqZN1Pd+OtIrp174oqOmP/jmvsOaSeR6mNJ/WacXF8+bbFutqA1BaKMC+yJtsevemCMTz6GOPmWGOqX/D+SKdc1smddnzGKZTbswYvb3++Mk/VpMFr0mkN10/z/Co5RzcwBjGsVE60XhQoCzWRV1zb6OA2tTLP5fkBaaPVty5BoamuAIFs0iKE=" \
           -e AWS_SECRET_KEY="0kAowVOL0lb7iwd2dGjlhebqV5LKMlL01foxZ/8T" \
           -e AWS_ACCESS_KEY="ASIA3D6HGFMMSHYFG6WA" \
@@ -101,7 +101,7 @@ jobs:
 
       - name: Run Docker Inventory Container
         run: |
-          sudo docker run -d -p 8082:8082 --name marketplacebackinventorycointainer \
+          sudo docker run -d -p 8080:8080 --name marketplacebackinventorycointainer \
           -e SECURITY_KEY="IQoJb3JpZ2luX2VjEKP//////////wEaCXVzLXdlc3QtMiJIMEYCIQCtlRd7WMsTT7CZmunV+FkRonOqwNjeSC0RfhCXVfgCYAIhAKsH9bRVJCDaX20vlktU+qGqq/NVZr165uWDKeeI6ptRKqgCCEwQARoMNzY0Mzg1MDQ1MjczIgzLfsb7s0l19Go7W2IqhQKFE0ymxn1TXVu9GytiRC29q0OErsjMF7Yj30VS45EH7RK/ltSzGySD4DFjxyt8f+twyO4Bl0S1XVCd6zFhP0qrHNZmjhRsTCRqMV/FVJxnIFbp815NHMe8wJ9cQbjaGu3rkrqPjoBHe657dL/cJLDyHMMhxSI32OfBuIPTpRPPUHDrGA48Rxu+Eye6hvj4n43f///balJiF/ZiZqu49WWXeFEJYYl2+//kSuzCdkzilPEES8T92ZCgU2V07Au+v7vjObi3k6jy/kBLLWqq9GlYewsduLNbXx/8l81yMZpYSc4ZmZDvlgVF6JYGZATrm7/S8SZ7wFMqaWgJBjIx9A4R/Avk9H0w277pwAY6nAGUCsjwIsyGOK3J93pzQod+XMbfYXqZN1Pd+OtIrp174oqOmP/jmvsOaSeR6mNJ/WacXF8+bbFutqA1BaKMC+yJtsevemCMTz6GOPmWGOqX/D+SKdc1smddnzGKZTbswYvb3++Mk/VpMFr0mkN10/z/Co5RzcwBjGsVE60XhQoCzWRV1zb6OA2tTLP5fkBaaPVty5BoamuAIFs0iKE=" \
           -e AWS_SECRET_KEY="0kAowVOL0lb7iwd2dGjlhebqV5LKMlL01foxZ/8T" \
           -e AWS_ACCESS_KEY="ASIA3D6HGFMMSHYFG6WA" \
