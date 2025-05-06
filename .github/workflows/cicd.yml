@@ -25,8 +25,8 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build -x test
         
-      - name: Login to docker hub
-        run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
+      - name: Login to Docker Hub
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
         
       - name: Build docker Orders image
         run: docker build -t joubina1/marketplacebackorderscointainer .
@@ -35,59 +35,75 @@ jobs:
       - name: Build docker Inventory image
         run: docker build -t joubina1/marketplacebackinventorycointainer .
         
-      - name: Publish Orders image to docker hub
+      - name: Publish Orders image to Docker Hub
         run: docker push joubina1/marketplacebackorderscointainer:latest
-      - name: Publish Payments image to docker hub
+      - name: Publish Payments image to Docker Hub
         run: docker push joubina1/marketplacebackpaymentscointainer:latest
-      - name: Publish Inventory image to docker hub
+      - name: Publish Inventory image to Docker Hub
         run: docker push joubina1/marketplacebackinventorycointainer:latest
 
-
-  deploy:
+  deploy-orders:
     needs: build
-    runs-on: self-hosted
+    runs-on: [self-hosted, orders]
     steps:
       - name: Delete old Orders container
-        run: sudo docker rm -f marketplacebackorderscointainer
-      - name: Delete old Payments container
-        run: sudo docker rm -f marketplacebackpaymentscointainer
-      - name: Delete old Inventory container
-        run: sudo docker rm -f marketplacebackinventorycointainer
+        run: sudo docker rm -f marketplacebackorderscointainer || true
 
       - name: Remove old image
         run: sudo docker image prune -a -f
 
-      - name: Pull Orders Image from docker hub
+      - name: Pull Orders Image from Docker Hub
         run: sudo docker pull joubina1/marketplacebackorderscointainer:latest
-      - name: Pull Payments Image from docker hub
-        run: sudo docker pull joubina1/marketplacebackpaymentscointainer:latest
-      - name: Pull Inventory Image from docker hub
-        run: sudo docker pull joubina1/marketplacebackinventorycointainer:latest
 
       - name: Run Docker Orders Container
         run: |
           sudo docker run -d -p 8080:8080 --name marketplacebackorderscointainer \
-          -e SECURITY_KEY="IQoJb3JpZ2luX2VjEJL//////////wEaCXVzLXdlc3QtMiJIMEYCIQCL+kAsumstnpki+1vESyosSzxuas5Ld3nk0GcZZPApngIhAMv1/IIOXu6yu74V+GpIHlBzlotiXRfZn8014SCMxOq6KqgCCDsQARoMNzY0Mzg1MDQ1MjczIgzefd+aa+3aaJgsBN0qhQLxPRV5uQemF+vB4oa555V+a4CxHtXEOsbd3XSekPdJBcOst/ywdWDjwxgLSZ7KpzAxL3hDX0Kmy6vpzDeOp3CsAS4K8OahwfyC2fCr8txRJkNf5AHDFEd+TAzHwUixrmAV6tmMyvlkNEPMBRWonKVkfI94o7M0+TAs46qMOrPXrJFkHUkqP53zvOoK2B69BGYqqlTTKz/pumCh+oy9eYus06yMZkpOFb/uBm2IyBeNpEvkzBZdldHTNv2DbX+e6wqIh+oWbBu0D71T6d+eUG+9I5h6MNuntPije8/X3YgsHNQWzaJtys5V2kJfeMIU5pTyk62c34AvnzcIgjOVVBD6yOrVpUow+snlwAY6nAEgvUyNK7YyBBkQDZRzXRaU2Uo8bHY8gFTPKk0jJhYAb588MEunao8O3gjCPHWRU8rCyxnaFoucUP1UK13+WK+XXmfoRTFbanEhE76u5jkqwiN0egNrvu7cy+K/QZoezM/UQoSnF4NqtjIelq6b4wn4Ng2ICeO1wwvjkI3mgKFNzH7Et++GYI+Uv60y23Ghi2K8EFm1hejswsBx1xY=" \
-          -e AWS_SECRET_KEY="KU7qeCicp1vJQkx2GjgD90CpggKe+g6ddvqJ5ofV" \
-          -e AWS_ACCESS_KEY="ASIA3D6HGFMM3ACPYCRB" \
+          -e SECURITY_KEY="IQoJb3JpZ2luX2VjEKP//////////wEaCXVzLXdlc3QtMiJIMEYCIQCtlRd7WMsTT7CZmunV+FkRonOqwNjeSC0RfhCXVfgCYAIhAKsH9bRVJCDaX20vlktU+qGqq/NVZr165uWDKeeI6ptRKqgCCEwQARoMNzY0Mzg1MDQ1MjczIgzLfsb7s0l19Go7W2IqhQKFE0ymxn1TXVu9GytiRC29q0OErsjMF7Yj30VS45EH7RK/ltSzGySD4DFjxyt8f+twyO4Bl0S1XVCd6zFhP0qrHNZmjhRsTCRqMV/FVJxnIFbp815NHMe8wJ9cQbjaGu3rkrqPjoBHe657dL/cJLDyHMMhxSI32OfBuIPTpRPPUHDrGA48Rxu+Eye6hvj4n43f///balJiF/ZiZqu49WWXeFEJYYl2+//kSuzCdkzilPEES8T92ZCgU2V07Au+v7vjObi3k6jy/kBLLWqq9GlYewsduLNbXx/8l81yMZpYSc4ZmZDvlgVF6JYGZATrm7/S8SZ7wFMqaWgJBjIx9A4R/Avk9H0w277pwAY6nAGUCsjwIsyGOK3J93pzQod+XMbfYXqZN1Pd+OtIrp174oqOmP/jmvsOaSeR6mNJ/WacXF8+bbFutqA1BaKMC+yJtsevemCMTz6GOPmWGOqX/D+SKdc1smddnzGKZTbswYvb3++Mk/VpMFr0mkN10/z/Co5RzcwBjGsVE60XhQoCzWRV1zb6OA2tTLP5fkBaaPVty5BoamuAIFs0iKE=" \
+          -e AWS_SECRET_KEY="0kAowVOL0lb7iwd2dGjlhebqV5LKMlL01foxZ/8T" \
+          -e AWS_ACCESS_KEY="ASIA3D6HGFMMSHYFG6WA" \
           -e module="orders" \
           joubina1/marketplacebackorderscointainer
-          
+
+  deploy-payments:
+    needs: build
+    runs-on: [self-hosted, payments]
+    steps:
+      - name: Delete old Payments container
+        run: sudo docker rm -f marketplacebackpaymentscointainer || true
+
+      - name: Remove old image
+        run: sudo docker image prune -a -f
+
+      - name: Pull Payments Image from Docker Hub
+        run: sudo docker pull joubina1/marketplacebackpaymentscointainer:latest
+
       - name: Run Docker Payments Container
         run: |
           sudo docker run -d -p 8081:8081 --name marketplacebackpaymentscointainer \
-          -e SECURITY_KEY="IQoJb3JpZ2luX2VjEJL//////////wEaCXVzLXdlc3QtMiJIMEYCIQCL+kAsumstnpki+1vESyosSzxuas5Ld3nk0GcZZPApngIhAMv1/IIOXu6yu74V+GpIHlBzlotiXRfZn8014SCMxOq6KqgCCDsQARoMNzY0Mzg1MDQ1MjczIgzefd+aa+3aaJgsBN0qhQLxPRV5uQemF+vB4oa555V+a4CxHtXEOsbd3XSekPdJBcOst/ywdWDjwxgLSZ7KpzAxL3hDX0Kmy6vpzDeOp3CsAS4K8OahwfyC2fCr8txRJkNf5AHDFEd+TAzHwUixrmAV6tmMyvlkNEPMBRWonKVkfI94o7M0+TAs46qMOrPXrJFkHUkqP53zvOoK2B69BGYqqlTTKz/pumCh+oy9eYus06yMZkpOFb/uBm2IyBeNpEvkzBZdldHTNv2DbX+e6wqIh+oWbBu0D71T6d+eUG+9I5h6MNuntPije8/X3YgsHNQWzaJtys5V2kJfeMIU5pTyk62c34AvnzcIgjOVVBD6yOrVpUow+snlwAY6nAEgvUyNK7YyBBkQDZRzXRaU2Uo8bHY8gFTPKk0jJhYAb588MEunao8O3gjCPHWRU8rCyxnaFoucUP1UK13+WK+XXmfoRTFbanEhE76u5jkqwiN0egNrvu7cy+K/QZoezM/UQoSnF4NqtjIelq6b4wn4Ng2ICeO1wwvjkI3mgKFNzH7Et++GYI+Uv60y23Ghi2K8EFm1hejswsBx1xY=" \
-          -e AWS_SECRET_KEY="KU7qeCicp1vJQkx2GjgD90CpggKe+g6ddvqJ5ofV" \
-          -e AWS_ACCESS_KEY="ASIA3D6HGFMM3ACPYCRB" \
+          -e SECURITY_KEY="IQoJb3JpZ2luX2VjEKP//////////wEaCXVzLXdlc3QtMiJIMEYCIQCtlRd7WMsTT7CZmunV+FkRonOqwNjeSC0RfhCXVfgCYAIhAKsH9bRVJCDaX20vlktU+qGqq/NVZr165uWDKeeI6ptRKqgCCEwQARoMNzY0Mzg1MDQ1MjczIgzLfsb7s0l19Go7W2IqhQKFE0ymxn1TXVu9GytiRC29q0OErsjMF7Yj30VS45EH7RK/ltSzGySD4DFjxyt8f+twyO4Bl0S1XVCd6zFhP0qrHNZmjhRsTCRqMV/FVJxnIFbp815NHMe8wJ9cQbjaGu3rkrqPjoBHe657dL/cJLDyHMMhxSI32OfBuIPTpRPPUHDrGA48Rxu+Eye6hvj4n43f///balJiF/ZiZqu49WWXeFEJYYl2+//kSuzCdkzilPEES8T92ZCgU2V07Au+v7vjObi3k6jy/kBLLWqq9GlYewsduLNbXx/8l81yMZpYSc4ZmZDvlgVF6JYGZATrm7/S8SZ7wFMqaWgJBjIx9A4R/Avk9H0w277pwAY6nAGUCsjwIsyGOK3J93pzQod+XMbfYXqZN1Pd+OtIrp174oqOmP/jmvsOaSeR6mNJ/WacXF8+bbFutqA1BaKMC+yJtsevemCMTz6GOPmWGOqX/D+SKdc1smddnzGKZTbswYvb3++Mk/VpMFr0mkN10/z/Co5RzcwBjGsVE60XhQoCzWRV1zb6OA2tTLP5fkBaaPVty5BoamuAIFs0iKE=" \
+          -e AWS_SECRET_KEY="0kAowVOL0lb7iwd2dGjlhebqV5LKMlL01foxZ/8T" \
+          -e AWS_ACCESS_KEY="ASIA3D6HGFMMSHYFG6WA" \
           -e module="payments" \
           joubina1/marketplacebackpaymentscointainer
+
+  deploy-inventory:
+    needs: build
+    runs-on: [self-hosted, inventory]
+    steps:
+      - name: Delete old Inventory container
+        run: sudo docker rm -f marketplacebackinventorycointainer || true
+
+      - name: Remove old image
+        run: sudo docker image prune -a -f
+
+      - name: Pull Inventory Image from Docker Hub
+        run: sudo docker pull joubina1/marketplacebackinventorycointainer:latest
 
       - name: Run Docker Inventory Container
         run: |
           sudo docker run -d -p 8082:8082 --name marketplacebackinventorycointainer \
-          -e SECURITY_KEY="IQoJb3JpZ2luX2VjEJL//////////wEaCXVzLXdlc3QtMiJIMEYCIQCL+kAsumstnpki+1vESyosSzxuas5Ld3nk0GcZZPApngIhAMv1/IIOXu6yu74V+GpIHlBzlotiXRfZn8014SCMxOq6KqgCCDsQARoMNzY0Mzg1MDQ1MjczIgzefd+aa+3aaJgsBN0qhQLxPRV5uQemF+vB4oa555V+a4CxHtXEOsbd3XSekPdJBcOst/ywdWDjwxgLSZ7KpzAxL3hDX0Kmy6vpzDeOp3CsAS4K8OahwfyC2fCr8txRJkNf5AHDFEd+TAzHwUixrmAV6tmMyvlkNEPMBRWonKVkfI94o7M0+TAs46qMOrPXrJFkHUkqP53zvOoK2B69BGYqqlTTKz/pumCh+oy9eYus06yMZkpOFb/uBm2IyBeNpEvkzBZdldHTNv2DbX+e6wqIh+oWbBu0D71T6d+eUG+9I5h6MNuntPije8/X3YgsHNQWzaJtys5V2kJfeMIU5pTyk62c34AvnzcIgjOVVBD6yOrVpUow+snlwAY6nAEgvUyNK7YyBBkQDZRzXRaU2Uo8bHY8gFTPKk0jJhYAb588MEunao8O3gjCPHWRU8rCyxnaFoucUP1UK13+WK+XXmfoRTFbanEhE76u5jkqwiN0egNrvu7cy+K/QZoezM/UQoSnF4NqtjIelq6b4wn4Ng2ICeO1wwvjkI3mgKFNzH7Et++GYI+Uv60y23Ghi2K8EFm1hejswsBx1xY=" \
-          -e AWS_SECRET_KEY="KU7qeCicp1vJQkx2GjgD90CpggKe+g6ddvqJ5ofV" \
-          -e AWS_ACCESS_KEY="ASIA3D6HGFMM3ACPYCRB" \
+          -e SECURITY_KEY="IQoJb3JpZ2luX2VjEKP//////////wEaCXVzLXdlc3QtMiJIMEYCIQCtlRd7WMsTT7CZmunV+FkRonOqwNjeSC0RfhCXVfgCYAIhAKsH9bRVJCDaX20vlktU+qGqq/NVZr165uWDKeeI6ptRKqgCCEwQARoMNzY0Mzg1MDQ1MjczIgzLfsb7s0l19Go7W2IqhQKFE0ymxn1TXVu9GytiRC29q0OErsjMF7Yj30VS45EH7RK/ltSzGySD4DFjxyt8f+twyO4Bl0S1XVCd6zFhP0qrHNZmjhRsTCRqMV/FVJxnIFbp815NHMe8wJ9cQbjaGu3rkrqPjoBHe657dL/cJLDyHMMhxSI32OfBuIPTpRPPUHDrGA48Rxu+Eye6hvj4n43f///balJiF/ZiZqu49WWXeFEJYYl2+//kSuzCdkzilPEES8T92ZCgU2V07Au+v7vjObi3k6jy/kBLLWqq9GlYewsduLNbXx/8l81yMZpYSc4ZmZDvlgVF6JYGZATrm7/S8SZ7wFMqaWgJBjIx9A4R/Avk9H0w277pwAY6nAGUCsjwIsyGOK3J93pzQod+XMbfYXqZN1Pd+OtIrp174oqOmP/jmvsOaSeR6mNJ/WacXF8+bbFutqA1BaKMC+yJtsevemCMTz6GOPmWGOqX/D+SKdc1smddnzGKZTbswYvb3++Mk/VpMFr0mkN10/z/Co5RzcwBjGsVE60XhQoCzWRV1zb6OA2tTLP5fkBaaPVty5BoamuAIFs0iKE=" \
+          -e AWS_SECRET_KEY="0kAowVOL0lb7iwd2dGjlhebqV5LKMlL01foxZ/8T" \
+          -e AWS_ACCESS_KEY="ASIA3D6HGFMMSHYFG6WA" \
           -e module="inventory" \
           joubina1/marketplacebackinventorycointainer
-
