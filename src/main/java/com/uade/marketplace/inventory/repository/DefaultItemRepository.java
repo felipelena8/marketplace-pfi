@@ -15,9 +15,9 @@ public class DefaultItemRepository implements ItemRepository {
 
   public DefaultItemRepository() {
     items = new HashMap<>(); // Use a mutable map
-    Item item1 = createItem("MacBook", 10, 999.99);
-    Item item2 = createItem("Smartwatch", 20, 200.5);
-    Item item3 = createItem("Samsung S24 Ultra", 5, 1200.0);
+    Item item1 = createItem("MacBook", 1000, 999.99);
+    Item item2 = createItem("Smartwatch", 1000, 200.5);
+    Item item3 = createItem("Samsung S24 Ultra", 1000, 1200.0);
 
     items.put(item1.getItemId(), item1);
     items.put(item2.getItemId(), item2);
