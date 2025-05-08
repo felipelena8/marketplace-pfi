@@ -9,9 +9,11 @@ import com.uade.marketplace.base.core.domain.dto.MessageDTO;
 import jakarta.annotation.PostConstruct;
 import java.util.List;
 import java.util.function.Supplier;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 
+@Slf4j
 public abstract class RetrieveMessagesSqs<T> implements Supplier<Void> {
 
   private final ObjectMapper objectMapper;
@@ -63,12 +65,15 @@ public abstract class RetrieveMessagesSqs<T> implements Supplier<Void> {
 
   private MessageDTO<T> mapMessageToDTO(Message message) {
     try {
+      String messageLog = objectMapper.writeValueAsString(message);
+      log.info("Message received: {}", messageLog);
       var body = objectMapper.readValue(message.getBody(), getTypeReference());
       return MessageDTO.<T>builder().body((T) body).build();
     } catch (Exception e) {
       throw new RuntimeException("Error mapping message to DTO", e);
     }
   }
+
 
   public abstract TypeReference getTypeReference();
 }
