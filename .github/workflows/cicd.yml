@@ -58,9 +58,9 @@ jobs:
       - name: Run Docker Orders Container
         run: |
           sudo docker run -d -p 8080:8080 --name marketplacebackorderscointainer \
-          -e SECURITY_KEY="IQoJb3JpZ2luX2VjEL3//////////wEaCXVzLXdlc3QtMiJHMEUCIQDBAZAMc8oUPF3osB6HP/s0UotSLFxXJt3ZSq4+boj6fQIgM/02V47wBncpX7qodrmquEcbQJ9jvNqzanQtbrooqEkqqAIIZhABGgw3NjQzODUwNDUyNzMiDHKugAEb2/u7KVL4ayqFAh0qcHFife9Oq6iU2H4QBtYa4XwGMmG1gRd6WKl6BYASHjkWf96x1mVy2zGvKt+UoUmbSayEk0kVBtAxT4WR5za8WqQcu9pcpb/xDbPpQCdkoaoLsimQkh+O66nQf4eQC4JWXFMEv8xN0JDUpeBODFwENUaAGJkfOeupp5gak1ZGvAo515LtFfVR6UJQ9+hbgIyCPPHdmYmjzZVAzQA4uTN2LXG9ABqan/uPWKcK4VY4MFXM76xHpCMLmBaIO4X2il3syc23pYWr+Q2syYIXoWVHKT/gwJKX8/xBPKbQS8vXo/6igS8jMMwCPf0fuvWpVLWN+4qUPuBltbwQKVPpnqoUTBHPUTDmme/ABjqdAVoiEV108ZJIUfHlYeZ2YzfME88pVStGCljF/IEdYSTPL/gUH2et4f3ajPs+4blzPf/G4O//uCG8IwfZId7cVv3s+r7qTQAenFufVxCoZXVhCYymObKUjsPPcZ/y+CQJDo6hu5vaGwzdAdkhV4d9ftkC1yj5as5QMI7bnw7uTa03XCtuH1Pa6cPn+RYBG17qIUTNcokEt/OzM+cQZBc=" \
-          -e AWS_SECRET_KEY="tK4kBr4Xrq+EriyqxHW72wo5qFmSz1oV5IMxiSKu" \
-          -e AWS_ACCESS_KEY="ASIA3D6HGFMM4LBTYT2Y" \
+          -e SECURITY_KEY="IQoJb3JpZ2luX2VjEND//////////wEaCXVzLXdlc3QtMiJHMEUCIFRIg4MahOutAL6Or9KGlroJfJtavzAyeoAkCk986sTNAiEAseJIOD8G/Zpncw2foRpw6pVajZNxJgB+HQPXsyS+Zu0qqAIIeRABGgw3NjQzODUwNDUyNzMiDOBpY199AN8EiqHe9iqFAkMm8vst0ltiKL2cfwbivUxxC/YeK7Mog0ZuhxgNaYlUmVP5c66OGXI6DPq8cgt7rhapK2loMekSeqXTmQ3dTw02WOciT88/RT443pJ+Yl0KO3aMZWgvRu34EotA96fScnOy0YRGOENrqllSN9TJnmyNLQGzvHPAyJc24YgojXM1Uq+fPMuSWpX88ZWQosncw3Sj6dzP8fDv6WYgAnHSzz20SHxNOHQMjjhRGGdQ9Mrfj+zzNKFugNW9LS5aPPYflEMkyZyXe+beisN7FJWjQ3ndYjYRgKl/Z5INp6Nt9ETvfyTTLIGpMHm0XbrDEp/LwTxHZMcDMNmZ3LJG7NR0VHymJvLyeTCNr/PABjqdAWInfeMHSJOL7D3hHSd3n5IrwqP+vcKLY3EWRFfSvkza8LYD65kiuYdpBtDu3sVeRP+okZ8swmZyn+Cp5xE4TUOptalRxJcUlD2V8lpC7FbNPRl0WJ/TztOeKH7P6GkPcPcurAraS+Q+AEn3htLK60/T0lwU5rsCfARZYNoJ5eAlLSFfJX3OO/kbNAKm8WsJuytwHp/Z4f08NSwb9P0=" \
+          -e AWS_SECRET_KEY="nCao0ylpn8LmcmyazdFGKrR3fc46ZARRt5rR3+9E" \
+          -e AWS_ACCESS_KEY="ASIA3D6HGFMM6UC3HUOJ" \
           -e module="orders" \
           joubina1/marketplacebackorderscointainer
 
@@ -80,9 +80,9 @@ jobs:
       - name: Run Docker Payments Container
         run: |
           sudo docker run -d -p 8080:8080 --name marketplacebackpaymentscointainer \
-          -e SECURITY_KEY="IQoJb3JpZ2luX2VjEL3//////////wEaCXVzLXdlc3QtMiJHMEUCIQDBAZAMc8oUPF3osB6HP/s0UotSLFxXJt3ZSq4+boj6fQIgM/02V47wBncpX7qodrmquEcbQJ9jvNqzanQtbrooqEkqqAIIZhABGgw3NjQzODUwNDUyNzMiDHKugAEb2/u7KVL4ayqFAh0qcHFife9Oq6iU2H4QBtYa4XwGMmG1gRd6WKl6BYASHjkWf96x1mVy2zGvKt+UoUmbSayEk0kVBtAxT4WR5za8WqQcu9pcpb/xDbPpQCdkoaoLsimQkh+O66nQf4eQC4JWXFMEv8xN0JDUpeBODFwENUaAGJkfOeupp5gak1ZGvAo515LtFfVR6UJQ9+hbgIyCPPHdmYmjzZVAzQA4uTN2LXG9ABqan/uPWKcK4VY4MFXM76xHpCMLmBaIO4X2il3syc23pYWr+Q2syYIXoWVHKT/gwJKX8/xBPKbQS8vXo/6igS8jMMwCPf0fuvWpVLWN+4qUPuBltbwQKVPpnqoUTBHPUTDmme/ABjqdAVoiEV108ZJIUfHlYeZ2YzfME88pVStGCljF/IEdYSTPL/gUH2et4f3ajPs+4blzPf/G4O//uCG8IwfZId7cVv3s+r7qTQAenFufVxCoZXVhCYymObKUjsPPcZ/y+CQJDo6hu5vaGwzdAdkhV4d9ftkC1yj5as5QMI7bnw7uTa03XCtuH1Pa6cPn+RYBG17qIUTNcokEt/OzM+cQZBc=" \
-          -e AWS_SECRET_KEY="tK4kBr4Xrq+EriyqxHW72wo5qFmSz1oV5IMxiSKu" \
-          -e AWS_ACCESS_KEY="ASIA3D6HGFMM4LBTYT2Y" \
+          -e SECURITY_KEY="IQoJb3JpZ2luX2VjEND//////////wEaCXVzLXdlc3QtMiJHMEUCIFRIg4MahOutAL6Or9KGlroJfJtavzAyeoAkCk986sTNAiEAseJIOD8G/Zpncw2foRpw6pVajZNxJgB+HQPXsyS+Zu0qqAIIeRABGgw3NjQzODUwNDUyNzMiDOBpY199AN8EiqHe9iqFAkMm8vst0ltiKL2cfwbivUxxC/YeK7Mog0ZuhxgNaYlUmVP5c66OGXI6DPq8cgt7rhapK2loMekSeqXTmQ3dTw02WOciT88/RT443pJ+Yl0KO3aMZWgvRu34EotA96fScnOy0YRGOENrqllSN9TJnmyNLQGzvHPAyJc24YgojXM1Uq+fPMuSWpX88ZWQosncw3Sj6dzP8fDv6WYgAnHSzz20SHxNOHQMjjhRGGdQ9Mrfj+zzNKFugNW9LS5aPPYflEMkyZyXe+beisN7FJWjQ3ndYjYRgKl/Z5INp6Nt9ETvfyTTLIGpMHm0XbrDEp/LwTxHZMcDMNmZ3LJG7NR0VHymJvLyeTCNr/PABjqdAWInfeMHSJOL7D3hHSd3n5IrwqP+vcKLY3EWRFfSvkza8LYD65kiuYdpBtDu3sVeRP+okZ8swmZyn+Cp5xE4TUOptalRxJcUlD2V8lpC7FbNPRl0WJ/TztOeKH7P6GkPcPcurAraS+Q+AEn3htLK60/T0lwU5rsCfARZYNoJ5eAlLSFfJX3OO/kbNAKm8WsJuytwHp/Z4f08NSwb9P0=" \
+          -e AWS_SECRET_KEY="nCao0ylpn8LmcmyazdFGKrR3fc46ZARRt5rR3+9E" \
+          -e AWS_ACCESS_KEY="ASIA3D6HGFMM6UC3HUOJ" \
           -e module="payments" \
           joubina1/marketplacebackpaymentscointainer
 
@@ -102,8 +102,8 @@ jobs:
       - name: Run Docker Inventory Container
         run: |
           sudo docker run -d -p 8080:8080 --name marketplacebackinventorycointainer \
-          -e SECURITY_KEY="IQoJb3JpZ2luX2VjEL3//////////wEaCXVzLXdlc3QtMiJHMEUCIQDBAZAMc8oUPF3osB6HP/s0UotSLFxXJt3ZSq4+boj6fQIgM/02V47wBncpX7qodrmquEcbQJ9jvNqzanQtbrooqEkqqAIIZhABGgw3NjQzODUwNDUyNzMiDHKugAEb2/u7KVL4ayqFAh0qcHFife9Oq6iU2H4QBtYa4XwGMmG1gRd6WKl6BYASHjkWf96x1mVy2zGvKt+UoUmbSayEk0kVBtAxT4WR5za8WqQcu9pcpb/xDbPpQCdkoaoLsimQkh+O66nQf4eQC4JWXFMEv8xN0JDUpeBODFwENUaAGJkfOeupp5gak1ZGvAo515LtFfVR6UJQ9+hbgIyCPPHdmYmjzZVAzQA4uTN2LXG9ABqan/uPWKcK4VY4MFXM76xHpCMLmBaIO4X2il3syc23pYWr+Q2syYIXoWVHKT/gwJKX8/xBPKbQS8vXo/6igS8jMMwCPf0fuvWpVLWN+4qUPuBltbwQKVPpnqoUTBHPUTDmme/ABjqdAVoiEV108ZJIUfHlYeZ2YzfME88pVStGCljF/IEdYSTPL/gUH2et4f3ajPs+4blzPf/G4O//uCG8IwfZId7cVv3s+r7qTQAenFufVxCoZXVhCYymObKUjsPPcZ/y+CQJDo6hu5vaGwzdAdkhV4d9ftkC1yj5as5QMI7bnw7uTa03XCtuH1Pa6cPn+RYBG17qIUTNcokEt/OzM+cQZBc=" \
-          -e AWS_SECRET_KEY="tK4kBr4Xrq+EriyqxHW72wo5qFmSz1oV5IMxiSKu" \
-          -e AWS_ACCESS_KEY="ASIA3D6HGFMM4LBTYT2Y" \
+          -e SECURITY_KEY="IQoJb3JpZ2luX2VjEND//////////wEaCXVzLXdlc3QtMiJHMEUCIFRIg4MahOutAL6Or9KGlroJfJtavzAyeoAkCk986sTNAiEAseJIOD8G/Zpncw2foRpw6pVajZNxJgB+HQPXsyS+Zu0qqAIIeRABGgw3NjQzODUwNDUyNzMiDOBpY199AN8EiqHe9iqFAkMm8vst0ltiKL2cfwbivUxxC/YeK7Mog0ZuhxgNaYlUmVP5c66OGXI6DPq8cgt7rhapK2loMekSeqXTmQ3dTw02WOciT88/RT443pJ+Yl0KO3aMZWgvRu34EotA96fScnOy0YRGOENrqllSN9TJnmyNLQGzvHPAyJc24YgojXM1Uq+fPMuSWpX88ZWQosncw3Sj6dzP8fDv6WYgAnHSzz20SHxNOHQMjjhRGGdQ9Mrfj+zzNKFugNW9LS5aPPYflEMkyZyXe+beisN7FJWjQ3ndYjYRgKl/Z5INp6Nt9ETvfyTTLIGpMHm0XbrDEp/LwTxHZMcDMNmZ3LJG7NR0VHymJvLyeTCNr/PABjqdAWInfeMHSJOL7D3hHSd3n5IrwqP+vcKLY3EWRFfSvkza8LYD65kiuYdpBtDu3sVeRP+okZ8swmZyn+Cp5xE4TUOptalRxJcUlD2V8lpC7FbNPRl0WJ/TztOeKH7P6GkPcPcurAraS+Q+AEn3htLK60/T0lwU5rsCfARZYNoJ5eAlLSFfJX3OO/kbNAKm8WsJuytwHp/Z4f08NSwb9P0=" \
+          -e AWS_SECRET_KEY="nCao0ylpn8LmcmyazdFGKrR3fc46ZARRt5rR3+9E" \
+          -e AWS_ACCESS_KEY="ASIA3D6HGFMM6UC3HUOJ" \
           -e module="inventory" \
           joubina1/marketplacebackinventorycointainer
